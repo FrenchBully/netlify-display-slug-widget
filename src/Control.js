@@ -43,7 +43,7 @@ export default class Control extends React.Component {
         value={this.state.url}
         onChange={this.onChangeHandler}
       />
-      <div style={styles}>https://greetings.hollywoodrecords.com/{this.state.url || '<CAMPAIGN NAME>'}</div>
+      <div style={styles}>{window.location.origin}/{this.state.url || '<CAMPAIGN NAME>'}</div>
       </div>
     );
   }
