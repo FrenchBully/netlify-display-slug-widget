@@ -1,10 +1,4 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import { WidgetPreviewContainer } from 'netlify-cms-ui-default';
 
-export default function Preview({ value }) {
-  return <div>{ value }</div>;
-}
-
-Preview.propTypes = {
-  value: PropTypes.node,
-};
+export const CampaignSlugPreview = ({ value }) => <WidgetPreviewContainer>{value}</WidgetPreviewContainer>;

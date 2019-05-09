@@ -1,18 +1,11 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Control extends React.Component {
+export class CampaignSlug extends Component {
   constructor(props) {
     super(props)
     this.state = {
       url: ''
     }
-  }
-  static propTypes = {
-    onChange: PropTypes.func.isRequired,
-    forID: PropTypes.string,
-    value: PropTypes.node,
-    classNameWrapper: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
@@ -21,13 +14,18 @@ export default class Control extends React.Component {
 
   onChangeHandler = (e) => {
     this.setState({url: e.target.value})
+    this.props.onChange(e.target.value)
   }
 
   render() {
     const {
       forID,
+      value,
+      setActiveStyle,
+      setInactiveStyle,
       classNameWrapper,
     } = this.props;
+
     const styles = {
       marginBottom: 0,
       fontSize: '12px',
@@ -36,14 +34,16 @@ export default class Control extends React.Component {
     }
     return (
       <div>
-      <input
-        type="text"
-        id={forID}
-        className={classNameWrapper}
-        value={this.state.url}
-        onChange={this.onChangeHandler}
-      />
-      <div style={styles}>{window.location.origin}/{this.state.url || '<CAMPAIGN NAME>'}</div>
+        <input
+          type="text"
+          id={forID}
+          className={classNameWrapper}
+          onFocus={setActiveStyle}
+          onBlur={setInactiveStyle}
+          value={value || ''}
+          onChange={this.onChangeHandler}
+        />
+        <div style={styles}>{window.location.origin}/{this.state.url || '<CAMPAIGN NAME>'}</div>
       </div>
     );
   }
